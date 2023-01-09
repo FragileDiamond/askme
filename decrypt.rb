@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'cgi'
 require 'json'
 require 'active_support'
 
 def verify_and_decrypt_session_cookie(cookie, secret_key_base, session_key)
-  cookie = CGI::unescape(cookie)
+  cookie = CGI.unescape(cookie)
   salt   = 'authenticated encrypted cookie'
   encrypted_cookie_cipher = 'aes-256-gcm'
   serializer = ActiveSupport::MessageEncryptor::NullSerializer
@@ -16,16 +18,16 @@ def verify_and_decrypt_session_cookie(cookie, secret_key_base, session_key)
   encryptor.decrypt_and_verify(cookie, purpose: "cookie.#{session_key}")
 end
 
-puts "Получаем сессию в Rails 6/7"
-puts "(для других версий рельс может не подойти, гуглите отдельный скрипт)"
+puts 'Получаем сессию в Rails 6/7'
+puts '(для других версий рельс может не подойти, гуглите отдельный скрипт)'
 
-puts "Вставьте куку, которую надо расшифровать:"
+puts 'Вставьте куку, которую надо расшифровать:'
 cookie = gets.chomp
 
-puts "Вставьте ключ"
+puts 'Вставьте ключ'
 secret_key_base = gets.chomp
 
-puts "Как называется ключ сессии"
+puts 'Как называется ключ сессии'
 session_key = gets.chomp
 
 result = verify_and_decrypt_session_cookie(cookie, secret_key_base, session_key)
