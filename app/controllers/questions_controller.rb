@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[update show destroy edit]
+  before_action :set_question, only: %i[update show destroy edit hide]
   def create
     question = Question.create(question_params)
 
@@ -32,6 +32,11 @@ class QuestionsController < ApplicationController
 
   def edit; end
 
+  def hide
+    @question.update(hidden: true)
+
+    redirect_to question_path(@question)
+  end
   private
 
   def question_params
