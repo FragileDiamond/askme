@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
     @question.update(question_params)
 
     if @question.save
-      redirect_to question_path(@question), notice: 'Новый вопрос создан'
+      redirect_to question_path(@question), notice: 'Вопрос отредактирован'
     else
       flash.now[:alert] = 'Неправильно заполнены поля вопроса'
 
