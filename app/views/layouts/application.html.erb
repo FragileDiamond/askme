@@ -12,7 +12,7 @@
 
   <body>
     <div class="wrapper">
-      <div class="navbar">
+      <%= content_tag :div, class: "navbar #{current_user.navbar_color if current_user.present? }" do %>
         <p class="title-sm text-bold"><%= link_to "Ask me!", root_path %></p>
         <div>
           <% if current_user.present? %>
@@ -26,7 +26,7 @@
               class: 'button button-yellow' %>
             <% end %>
         </div>
-      </div>
+      <% end %>
       <% if flash[:notice].present? %>
         <p class="mb mt message message-notice"><%= flash[:notice] %></p>
       <% elsif flash[:alert].present? %>
