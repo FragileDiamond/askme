@@ -1,3 +1,8 @@
+<div class="mb-sm">
+  <p>Вопрос задал</p>
+  <%= question_author(question) %>
+</div>
+
 <div class="mb-sm" style="white-space: pre-line">
   <%= content_tag :p, class: "mb-sm" + (question.hidden? ? " hidden" : '') do %>
     <%= question.body %>
