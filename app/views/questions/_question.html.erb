@@ -3,10 +3,8 @@
   <%= question_author(question) %>
 </div>
 
-<div class="mb-sm" style="white-space: pre-line">
-  <%= content_tag :p, class: "mb-sm" + (question.hidden? ? " hidden" : '') do %>
-    <%= question.body %>
-  <% end %>
+<div class="mb-sm">
+  <%= simple_format(question.body, class: "mb-sm #{'hidden' if question.hidden?}") %>
 </div>
 
 <% if question.answer.present? %>
@@ -30,7 +28,8 @@
         form: {data: {turbo_confirm: 'Точно удалить вопрос?'}}, class: 'mr-sm' %>
       <% unless question.hidden? %>
         <%= button_to fa_icon('eye-slash'), hide_question_path(question),
-          method: :put, title: 'Спрятать вопрос' %>
+          method: :put, title: 'Спрятать вопрос',
+          form: {data: {turbo_confirm: 'Точно спрятать вопрос?'}} %>
       <% end %>
     </div>
   <% end %>

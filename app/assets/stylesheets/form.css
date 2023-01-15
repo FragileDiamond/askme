@@ -14,3 +14,7 @@
   box-sizing: border-box;
   width: 100%;
 }
+
+.form-select {
+  font-size: 100%;
+}

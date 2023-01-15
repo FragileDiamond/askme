@@ -23,8 +23,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
@@ -58,6 +57,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find_by!(nickname: params[:nickname])
   end
+
   def user_params
     params.require(:user).permit(
       :name, :nickname, :email, :password, :password_confirmation, :navbar_color
