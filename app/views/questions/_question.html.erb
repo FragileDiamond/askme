@@ -4,7 +4,9 @@
 </div>
 
 <div class="mb-sm">
-  <%= simple_format(question.body, class: "mb-sm #{'hidden' if question.hidden?}") %>
+  <p class=<%="#{'hidden' if question.hidden?}" %>>
+    <%= question.body.gsub(/\n/, '<br/>').html_safe %>
+  </p>
 </div>
 
 <% if question.answer.present? %>

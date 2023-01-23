@@ -25,13 +25,6 @@
       <p class="mt"><%= form.label :password_confirmation %></p>
       <p><%= form.password_field :password_confirmation, class: 'form-text-field' %></p>
 
-      <p class="mt"><%= form.label :navbar_color, 'Цвет шапки' %></p>
-      <p class="mt">
-        <%= form.select :navbar_color,
-          ['dark-red', 'black', 'blueviolet', 'blue', 'grey'],
-          {}, {:class => "form-select"} %>
-      </p>
-
       <p class="mt-lg"><%= form.submit 'Зарегистрироваться',
         class: 'button button-main' %></p>
     <% end %>
