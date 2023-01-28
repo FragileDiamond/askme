@@ -13,6 +13,7 @@ class User < ApplicationRecord
     format: { with: /\A[[:alpha:]+\-_.\d]+@[[:alpha:]\d-]+(\.[[:alpha:]\d-]+)*\.[[:alpha:]]+\z/i }
   validates :nickname, presence: true, uniqueness: true,
     format: { with: /\A\w+\z/ }, length: { maximum: 40 }
+  validates :navbar_color, inclusion: { in: %w(dark-red black blueviolet blue grey) }
 
   gravtastic(secure: true, filetype: :png, size: 100, default: 'retro')
 
