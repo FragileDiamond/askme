@@ -19,6 +19,15 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def index
+    @questions = Question.order(created_at: :desc).last(10)
+    @users = User.order(created_at: :desc).last(10)
+  end
+  def hashtags
+    tag = Tag.find_by(name: params[:name])
+    @questions = tag.questions
+  end
+
   def update
     question_params = params.require(:question).permit(:body, :answer)
 
@@ -42,11 +51,6 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-  end
-
-  def index
-    @questions = Question.order(created_at: :desc).last(10)
-    @users = User.order(created_at: :desc).last(10)
   end
 
   def new

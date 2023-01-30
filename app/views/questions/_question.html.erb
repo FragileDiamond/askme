@@ -5,7 +5,7 @@
 
 <div class="mb-sm">
   <p class=<%="#{'hidden' if question.hidden?}" %>>
-    <%= sanitize question.body.gsub(/\n/, '<br/>').html_safe, :tags => %w[br] %>
+    <%= render_with_hashtags(sanitize question.body.gsub(/\n/, '<br/>').html_safe, :tags => %w[br]) %>
   </p>
 </div>
 
