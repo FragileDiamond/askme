@@ -5,15 +5,15 @@ class User < ApplicationRecord
 
   has_many :questions, dependent: :delete_all
   has_many :asked_questions, class_name: 'Question', foreign_key: :author_id,
-    dependent: :nullify
+                             dependent: :nullify
 
   before_save :downcase_nickname
 
   validates :email, presence: true, uniqueness: true,
-    format: { with: /\A[[:alpha:]+\-_.\d]+@[[:alpha:]\d-]+(\.[[:alpha:]\d-]+)*\.[[:alpha:]]+\z/i }
+                    format: { with: /\A[[:alpha:]+\-_.\d]+@[[:alpha:]\d-]+(\.[[:alpha:]\d-]+)*\.[[:alpha:]]+\z/i }
   validates :nickname, presence: true, uniqueness: true,
-    format: { with: /\A\w+\z/ }, length: { maximum: 40 }
-  validates :navbar_color, inclusion: { in: %w(dark-red black blueviolet blue grey) }
+                       format: { with: /\A\w+\z/ }, length: { maximum: 40 }
+  validates :navbar_color, inclusion: { in: %w[dark-red black blueviolet blue grey] }
 
   gravtastic(secure: true, filetype: :png, size: 100, default: 'retro')
 

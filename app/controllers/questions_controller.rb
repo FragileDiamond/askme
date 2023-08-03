@@ -23,6 +23,7 @@ class QuestionsController < ApplicationController
     @questions = Question.order(created_at: :desc).last(10)
     @users = User.order(created_at: :desc).last(10)
   end
+
   def hashtags
     tag = Tag.find_by(name: params[:name])
     @questions = tag.questions

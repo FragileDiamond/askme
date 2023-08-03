@@ -9,8 +9,8 @@ class Question < ApplicationRecord
   validates :body, presence: true, length: { maximum: 280 }
 
   after_create do
-    question = Question.find_by(id: self.id)
-    hashtags = self.body.scan(/#\w+/)
+    question = Question.find_by(id:)
+    hashtags = body.scan(/#\w+/)
     hashtags.uniq.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
       question.tags << tag
@@ -18,9 +18,9 @@ class Question < ApplicationRecord
   end
 
   before_update do
-    question = Question.find_by(id: self.id)
+    question = Question.find_by(id:)
     question.tags.clear
-    hashtags = self.body.scan(/#\w+/)
+    hashtags = body.scan(/#\w+/)
     hashtags.uniq.map do |hashtag|
       tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
       question.tags << tag
